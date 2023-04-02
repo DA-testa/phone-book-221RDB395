@@ -32,9 +32,7 @@ def process_queries(queries): # Tiek definēta "apstrādāšanas" funkcija.
             if current_query.number in phone_book:
                 return phone_book[current_query.number]
             else:
-                return "not found"
-
-            
+                result.append("not found")
     return result
 
 
