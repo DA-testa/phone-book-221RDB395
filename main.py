@@ -1,32 +1,42 @@
-# python3
+class HashTable:
+    def __init__(self, size=1000):
+        self.size = size
+        self.table = [[] for _ in range(size)]
+        
+    def _hash_function(self, key):
+        return hash(key) % self.size
+        
+    def add(self, number, name):
+        index = self._hash_function(number)
+        for i, (n, _) in enumerate(self.table[index]):
+            if n == number:
+                self.table[index][i] = (number, name)
+                return
+        self.table[index].append((number, name))
+        
+    def delete(self, number):
+        index = self._hash_function(number)
+        for i, (n, _) in enumerate(self.table[index]):
+            if n == number:
+                del self.table[index][i]
+                return
+        
+    def find(self, number):
+        index = self._hash_function(number)
+        for n, name in self.table[index]:
+            if n == number:
+                return name
+        return "not found"
 
-class Query:
-    def __init__(self, query):
-        self.type = query[0]
-        self.number = int(query[1])
-        if self.type == 'add':
-            self.name = query[2]
 
-def read_queries():
-    n = int(input())
-    return [Query(input().split()) for i in range(n)]
+phone_book = HashTable()
 
-def write_responses(result):
-    print('\n'.join(result))
-
-def process_queries(queries):
-    result = []
-    # Keep dictionary of contacts with numbers as keys and names as values.
-    contacts = {}
-    for cur_query in queries:
-        if cur_query.type == 'add':
-            contacts[cur_query.number] = cur_query.name
-        elif cur_query.type == 'del':
-            contacts.pop(cur_query.number, None)
-        else:
-            response = contacts.get(cur_query.number, 'not found')
-            result.append(response)
-    return result
-
-if __name__ == '__main__':
-    write_responses(process_queries(read_queries()))
+n = int(input())
+for i in range(n):
+    query = input().split()
+    if query[0] == "add":
+        phone_book.add(query[1], query[2])
+    elif query[0] == "del":
+        phone_book.delete(query[1])
+    elif query[0] == "find":
+        print(phone_book.find(query[1]))
