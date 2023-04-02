@@ -1,3 +1,6 @@
+# python3
+# 221RDB395 Anastasija Bondare 13.grupa
+
 class Query:
     def __init__(self, query):
         self.type = query[0]
