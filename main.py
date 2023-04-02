@@ -1,37 +1,43 @@
 # python3
 # 221RDB395 Anastasija Bondare 13.grupa
 
-class Query:
-    def __init__(self, query):
-        self.type = query[0]
-        self.number = int(query[1])
-        if self.type == 'add':
-            self.name = query[2]
 
-def read_queries():
-    n = int(input())
-    return [Query(input().split()) for i in range(n)]
+class Query: # Tiek definēta klase Query, kas satur metodi __init__,
+    def __init__(self, query): # kura tiek izsaukta pēc objekta 'Query'.
+        self.type = query[0] # Pirmā pozīcijā tiek saglabāts vaicājums jeb funkcija - add, del vai find.
+        self.number = int(query[1]) # Otrajā pozīcijā tiek saglabāts telefona numurs kā vesels skaitlis.
+        if self.type == 'add': # Ja vaicājums jeb funkcija ir vienāda ar add, tad 
+            self.name = query[2] # Trešajā pozīcijā tiek saglabāts vārds, kas tika piešķirts telefona numuram.
+
+
+def read_queries(): # Tiek definēta "lasīšanas" funkcija. 
+    n = int(input()) # No tastatūras ievada vaicājamu skaitu, cik kontaktu tiks apstrādāti.
+    return [Query(input().split()) for i in range(n)] # Tiek izveidots saraksts ar kontaktiem, kuri tiks aprstādāti pēc atbilstošām funkcijām.
+
 
 def write_responses(result):
-    print('\n'.join(result))
+    print('\n'.join(result)) # Tiek izvadīti apstrādātie kontakti jaunajā rindā (katrs apstrādātais kontakts būs jaunajā rindā).
 
-def process_queries(queries):
-    result = []
-    # Use a dictionary to store contacts instead of a list
-    contacts = {}
-    for cur_query in queries:
-        if cur_query.type == 'add':
-            # If we already have a contact with such number, overwrite its name
-            contacts[cur_query.number] = cur_query.name
-        elif cur_query.type == 'del':
-            # If the contact exists, delete it from the dictionary
-            if cur_query.number in contacts:
-                del contacts[cur_query.number]
+
+def process_queries(queries): # Tiek definēta "apstrādāšanas" funkcija.
+    result = [] # Tiek definēts tukšs saraksts, kur glabās apstrādātos kontaktus (beigas).
+    phone_book = {} # Tiek definēts tukšs saraksts ar kontaktiem, kurus lietotājs manuāli ievadīs no tastatūras (sākums).
+    for current_query in queries: 
+        if current_query.type == 'add':
+            phone_book[current_query.number] = current_query.name # Ja kontakts jau pastāv ar tādu pašu vārdu, tad tam tiks piešķirts jauns vārds.
+        elif current_query.type == 'del':
+            if current_query.number in phone_book:  # Ja kontaks jau pastāv sarakstā, 
+                del phone_book[current_query.number] # tad tas tiks izdzēsts no tā.
         else:
             # If the contact exists, return its name, otherwise return "not found"
-            response = contacts.get(cur_query.number, 'not found')
+            response = 'not found'
+            for current_query in queries:
+                response = current_query.name
+                break
             result.append(response)
     return result
 
-if __name__ == '__main__':
+
+if __name__ == '__main__': # Izsauc funkcijas, lai apstrādātu ievadītos kontaktus un pēc tam tos izvadītu.
     write_responses(process_queries(read_queries()))
+
