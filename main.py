@@ -21,15 +21,15 @@ def process_queries(queries): # Tiek definēta "apstrādāšanas" funkcija.
     for current_query in queries: 
         if current_query.type == 'add':
             phone_book[current_query.number] = current_query.name # Ja kontakts jau pastāv ar tādu pašu vārdu, tad tam tiks piešķirts jauns vārds.
-        elif current_query.type == 'del':
+        return
+        if current_query.type == 'del':
             if current_query.number in phone_book:  # Ja kontaks jau pastāv sarakstā, 
                 del phone_book[current_query.number] # tad tas tiks izdzēsts no tā.
-        else:
-            name = phone_book.get(current_query.number) # Ja kontaksts jau pastāv esošā sarakstā,
-            if name:
-                result.append(name) # tad atgriež kontam piešķirto nosaukumu.
-            else: 
-                result.append("not found") # Pretējā gadījumā tiks izvadīts paziņojums,ka kontakts netika atrasts.
+        return
+        if name = phone_book.get(current_query.number) # Ja kontaksts jau pastāv esošā sarakstā,
+            result.append(name) # tad atgriež kontam piešķirto nosaukumu.
+        else: 
+            result.append("not found") # Pretējā gadījumā tiks izvadīts paziņojums,ka kontakts netika atrasts.
     return result
 
 if __name__ == '__main__': # Izsauc funkcijas, lai apstrādātu ievadītos kontaktus un pēc tam tos izvadītu.
