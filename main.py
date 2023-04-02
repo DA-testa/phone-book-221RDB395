@@ -12,7 +12,8 @@ def read_queries(): # Tiek definēta "lasīšanas" funkcija.
     n = int(input()) # No tastatūras ievada vaicājamu skaitu, cik kontaktu tiks apstrādāti.
     return [Query(input().split()) for i in range(n)] # Tiek izveidots saraksts ar kontaktiem, kuri tiks aprstādāti pēc atbilstošām funkcijām.
 
-def write_responses(result): print('\n'.join(result)) # Tiek izvadīti apstrādātie kontakti jaunajā rindā (katrs apstrādātais kontakts būs jaunajā rindā).
+def write_responses(result):
+     print('\n'.join(result)) # Tiek izvadīti apstrādātie kontakti jaunajā rindā (katrs apstrādātais kontakts būs jaunajā rindā).
 
 def process_queries(queries): # Tiek definēta "apstrādāšanas" funkcija.
     result = [] # Tiek definēts tukšs saraksts, kur glabās apstrādātos kontaktus (beigas).
