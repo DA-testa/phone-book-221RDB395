@@ -3,8 +3,8 @@
 
 class Query: # Tiek definēta klase Query, kas satur metodi __init__,
     def __init__(self, query): # kura tiek izsaukta pēc objekta 'Query'.
-        self.type = query[0] # Pirmā pozīcijā tiek saglabāts vaicājums jeb funkcija - add, del vai find.
-        self.number = int(query[1]) # Otrajā pozīcijā tiek saglabāts telefona numurs kā vesels skaitlis.
+        self.type,self.number = query[0],int(query[1]) # Pirmā pozīcijā tiek saglabāts vaicājums jeb funkcija - add, del vai find.
+  # Otrajā pozīcijā tiek saglabāts telefona numurs kā vesels skaitlis.
         if self.type == 'add': # Ja vaicājums jeb funkcija ir vienāda ar add, tad 
             self.name = query[2] # Trešajā pozīcijā tiek saglabāts vārds, kas tika piešķirts telefona numuram.
 
