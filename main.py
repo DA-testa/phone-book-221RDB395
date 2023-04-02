@@ -29,12 +29,12 @@ def process_queries(queries): # Tiek definēta "apstrādāšanas" funkcija.
             if current_query.number in phone_book:  # Ja kontaks jau pastāv sarakstā, 
                 del phone_book[current_query.number] # tad tas tiks izdzēsts no tā.
         else:
-            # If the contact exists, return its name, otherwise return "not found"
-            response = 'not found'
-            for current_query in queries:
-                response = current_query.name
-                break
-            result.append(response)
+            if current_query.number in phone_book:
+                return phone_book[current_query.number]
+            else:
+                return "not found"
+
+            
     return result
 
 
