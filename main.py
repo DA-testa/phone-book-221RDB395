@@ -1,42 +1,26 @@
-class HashTable:
-    def __init__(self, size=1000):
-        self.size = size
-        self.table = [[] for _ in range(size)]
-        
-    def _hash_function(self, key):
-        return hash(key) % self.size
-        
-    def add(self, number, name):
-        index = self._hash_function(number)
-        for i, (n, _) in enumerate(self.table[index]):
-            if n == number:
-                self.table[index][i] = (number, name)
-                return
-        self.table[index].append((number, name))
-        
-    def delete(self, number):
-        index = self._hash_function(number)
-        for i, (n, _) in enumerate(self.table[index]):
-            if n == number:
-                del self.table[index][i]
-                return
-        
-    def find(self, number):
-        index = self._hash_function(number)
-        for n, name in self.table[index]:
-            if n == number:
-                return name
-        return "not found"
+# python
 
+def _hash_func(self, s):
+    ans = 0
+    for c in reversed(s):
+        ans = (ans * self._multiplier + ord(c)) % self._prime
+     return ans % self.bucket_count
+def add(self, string):
+    hashed = self._hash_func(string)
+    bucket = self.buckts[hashed]
+    if string not in bucket:
+        self.buckets[hashed] = [string] + bucket
+        
+def delete(self, string):
+    hashed = self._hash_func(string)
+    bucket = self.buckts[hashed]
+    for i in range(len(bucket)):
+        if bucket[i] == string:
+            bucket.pop(i)
+            break
 
-phone_book = HashTable()
-
-n = int(input())
-for i in range(n):
-    query = input().split()
-    if query[0] == "add":
-        phone_book.add(query[1], query[2])
-    elif query[0] == "del":
-        phone_book.delete(query[1])
-    elif query[0] == "find":
-        print(phone_book.find(query[1]))
+def find(self, string):
+    hashed = self._hash_func(string)
+    if string in self.buckets[hashed]:
+        return "yes"
+    return "no"
