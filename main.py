@@ -1,8 +1,7 @@
 # python3
-# 221RDB395 Anastasija Bondare 13.grupa
 
 class Query:
-    def __init__(self, query):
+    def init(self, query):
         self.type = query[0]
         self.number = int(query[1])
         if self.type == 'add':
