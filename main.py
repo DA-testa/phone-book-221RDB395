@@ -1,4 +1,5 @@
 # Anastasija Bondare 13.grupa 221RDB395
+
 # python3
 
 class Query:
