@@ -8,12 +8,10 @@ class Query: # Tiek definēta klase Query, kas satur metodi __init__,
         if self.type == 'add': # Ja vaicājums jeb funkcija ir vienāda ar add, tad 
             self.name = query[2] # Trešajā pozīcijā tiek saglabāts vārds, kas tika piešķirts telefona numuram.
 
-def read_queries(): # Tiek definēta "lasīšanas" funkcija. 
-    n = int(input()) # No tastatūras ievada vaicājamu skaitu, cik kontaktu tiks apstrādāti.
-    return [Query(input().split()) for i in range(n)] # Tiek izveidots saraksts ar kontaktiem, kuri tiks aprstādāti pēc atbilstošām funkcijām.
+def read_queries(): # Tiek definēta "lasīšanas" funkcija. No tastatūras ievada vaicājamu skaitu, cik kontaktu tiks apstrādāti.
+    n = int(input()); return [Query(input().split()) for i in range(n)] # Tiek izveidots saraksts ar kontaktiem, kuri tiks aprstādāti pēc atbilstošām funkcijām.
 
-def write_responses(result):
-    print('\n'.join(result)) # Tiek izvadīti apstrādātie kontakti jaunajā rindā (katrs apstrādātais kontakts būs jaunajā rindā).
+def write_responses(result): print('\n'.join(result)) # Tiek izvadīti apstrādātie kontakti jaunajā rindā (katrs apstrādātais kontakts būs jaunajā rindā).
 
 def process_queries(queries): # Tiek definēta "apstrādāšanas" funkcija.
     result = [] # Tiek definēts tukšs saraksts, kur glabās apstrādātos kontaktus (beigas).
