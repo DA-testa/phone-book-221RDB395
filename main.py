@@ -30,6 +30,4 @@ def process_queries(queries):
     return result
 
 if name == 'main':
-    queries = read_queries()
-    results = process_queries(queries)
-    write_responses(results)
+    write_responses(process_queries(read_queries()))
